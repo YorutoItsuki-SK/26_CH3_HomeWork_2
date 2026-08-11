@@ -32,4 +32,6 @@ class CH_HOMEWORK2_API AFlyingController : public APlayerController
 		UInputAction* RollLeftAction;
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 		UInputAction* RollRightAction;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+		UInputAction* RollResetAction;
 };

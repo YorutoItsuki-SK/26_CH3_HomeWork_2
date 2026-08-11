@@ -28,6 +28,7 @@ AFlyingController::AFlyingController()
 	FloatAction(nullptr),
 	SinkAction(nullptr),
 	RollLeftAction(nullptr),
-	RollRightAction(nullptr)
+	RollRightAction(nullptr),
+	RollResetAction(nullptr)
 {
 }
