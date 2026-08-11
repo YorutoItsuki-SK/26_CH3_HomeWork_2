@@ -30,9 +30,9 @@ protected:
 	float SpeedRotateMax;
 	float SpeedFlyMax;
 
-	float SpeedMove = 0;
+	/*float SpeedMove = 0;
 	float SpeedRotate = 0;
-	float SpeedFly = 0;
+	float SpeedFly = 0;*/
 
 	virtual void BeginPlay() override;
 
@@ -46,22 +46,26 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Camera")
 	TObjectPtr<UCameraComponent> CameraComponent;
 
+	const bool IsGrounded() const;
+
 public:	
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UFUNCTION();
+	UFUNCTION()
 	void Move(const FInputActionValue& Value);
-	UFUNCTION();
+	UFUNCTION()
 	void Look(const FInputActionValue& Value);
-	UFUNCTION();
+	UFUNCTION()
 	void Float(const FInputActionValue& Value);
-	UFUNCTION();
+	UFUNCTION()
 	void Sink(const FInputActionValue& Value);
-	UFUNCTION();
+	UFUNCTION()
 	void RollLeft(const FInputActionValue& Value);
-	UFUNCTION();
+	UFUNCTION()
 	void RollRight(const FInputActionValue& Value);
+	UFUNCTION()
+	void RollReset(const FInputActionValue& Value);
 
 };
