@@ -1,5 +1,33 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿#include "Controller/FlyingController.h"
+#include "EnhancedInputSubsystems.h"
 
+void AFlyingController::BeginPlay()
+{
+	Super::BeginPlay();
 
-#include "Controller/FlyingController.h"
+	ULocalPlayer* LocalPlayer = GetLocalPlayer();
+	if (!LocalPlayer) {
+		return;
+	}
+	UEnhancedInputLocalPlayerSubsystem* PlayerSubSystem = LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>();
+	if (!PlayerSubSystem) {
+		return;
+	}
 
+	if (!InputMappingContext) {
+		return;
+	}
+
+	PlayerSubSystem->AddMappingContext(InputMappingContext, 0);
+}
+
+AFlyingController::AFlyingController()
+	:InputMappingContext(nullptr),
+	MoveAction(nullptr),
+	LookAction(nullptr),
+	FloatAction(nullptr),
+	SinkAction(nullptr),
+	RollLeftAction(nullptr),
+	RollRightAction(nullptr)
+{
+}
