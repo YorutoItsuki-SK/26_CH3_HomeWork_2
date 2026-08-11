@@ -167,8 +167,13 @@ void AFlyingOne::Move(const FInputActionValue& Value)
 		0.f
 	);
 
+	float FlyingOffset = 1.f;
+	if (!IsGrounded()) {
+		FlyingOffset = 0.5f;
+	}
+
 	AddActorLocalOffset(
-		LocalMovement * SpeedMoveMax * CurrentDeltaTime,
+		LocalMovement * SpeedMoveMax * CurrentDeltaTime * FlyingOffset,
 		true
 	);
 }
