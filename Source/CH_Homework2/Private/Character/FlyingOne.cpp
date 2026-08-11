@@ -40,7 +40,6 @@ AFlyingOne::AFlyingOne()
 void AFlyingOne::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 const bool AFlyingOne::IsGrounded() const
@@ -49,7 +48,7 @@ const bool AFlyingOne::IsGrounded() const
 
 	const FVector Start = GetActorLocation();
 	const FVector End =
-		Start - FVector(0.f, 0.f, BoxExtent.Z + 30.f);
+		Start - FVector(0.f, 0.f, BoxExtent.Z + 1.f);
 
 	FHitResult HitResult;
 
@@ -65,12 +64,23 @@ const bool AFlyingOne::IsGrounded() const
 	);
 }
 
+void AFlyingOne::RollResetFunc()
+{
+	FRotator Rotation = GetActorRotation();
+	Rotation.Pitch = 0.f;
+	Rotation.Roll = 0.f;
+	SetActorRotation(Rotation);
+}
+
 void AFlyingOne::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	CurrentDeltaTime = DeltaTime;
 
-	AddActorWorldOffset(FVector(0.f, 0.f, -Gravity * DeltaTime), true);
+	if (!IsGrounded()) {
+		AddActorWorldOffset(FVector(0.f, 0.f, -Gravity * DeltaTime), true);
+	}
+
 }
 
 void AFlyingOne::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -225,9 +235,6 @@ void AFlyingOne::RollRight(const FInputActionValue& Value)
 
 void AFlyingOne::RollReset(const FInputActionValue& Value)
 {
-	FRotator Rotation = GetActorRotation();
-	Rotation.Pitch = 0.f;
-	Rotation.Roll = 0.f;
-	SetActorRotation(Rotation);
+	RollResetFunc();
 }
 

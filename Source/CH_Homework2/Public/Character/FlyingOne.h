@@ -48,6 +48,9 @@ protected:
 
 	const bool IsGrounded() const;
 
+	UFUNCTION(BlueprintCallable, Category = "Rotate")
+	void RollResetFunc();
+
 public:	
 	virtual void Tick(float DeltaTime) override;
 
