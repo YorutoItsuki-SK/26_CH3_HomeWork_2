@@ -1,5 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿#include "GameMode/FlyingGameMode.h"
+#include "Character/FlyingOne.h"
+#include "Controller/FlyingController.h"
 
-
-#include "GameMode/FlyingGameMode.h"
-
+AFlyingGameMode::AFlyingGameMode()
+{
+	DefaultPawnClass = AFlyingOne::StaticClass();
+	PlayerControllerClass = AFlyingController::StaticClass();
+}
