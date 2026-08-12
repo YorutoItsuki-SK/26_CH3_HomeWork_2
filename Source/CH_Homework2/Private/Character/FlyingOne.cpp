@@ -216,6 +216,9 @@ void AFlyingOne::Sink(const FInputActionValue& Value)
 
 void AFlyingOne::RollLeft(const FInputActionValue& Value)
 {
+	if (IsGrounded()) {
+		return;
+	}
 	AddActorLocalRotation(
 		FRotator(
 			0.f,
@@ -228,6 +231,9 @@ void AFlyingOne::RollLeft(const FInputActionValue& Value)
 
 void AFlyingOne::RollRight(const FInputActionValue& Value)
 {
+	if (IsGrounded()) {
+		return;
+	}
 	AddActorLocalRotation(
 		FRotator(
 			0.f,
